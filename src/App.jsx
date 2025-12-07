@@ -50,11 +50,21 @@ const SVGDefs = () => (
   </defs>
 );
 
-const StringLoopDetail = ({ loopColor, bodyColor, label }) => {
+// --- Custom Hooks ---
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  return isMobile;
+};
+
+const StringLoopDetail = ({ loopColor, bodyColor }) => {
   return (
     <g>
-      <text x="50" y="10" textAnchor="middle" fontSize="12" className="fill-stone-500 font-bold tracking-widest">{label}</text>
-
       <g transform="translate(0, 25)" filter="url(#dropShadow)">
 
         {/* 1. ループ部分 (上の輪) - 修正：先端の尖りをなくし、完全に丸くする */}
@@ -208,6 +218,7 @@ export default function KyudoStringCustomizer() {
   const [bowDate, setBowDate] = useState(''); // 購入・製造時期
 
   const [copied, setCopied] = useState(false);
+  const isMobile = useIsMobile(); // モバイル判定
 
   // 素材に基づいて選択可能な色をフィルタリング
   const availableBodyColors = useMemo(() => {
@@ -257,19 +268,47 @@ export default function KyudoStringCustomizer() {
       <main className="flex-grow max-w-6xl mx-auto w-full px-4 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative">
 
         {/* Left Column: Preview Area */}
-        <div className="lg:col-span-7 bg-white rounded-2xl shadow-lg border border-stone-200 overflow-hidden sticky top-20 lg:top-24 h-[45vh] lg:h-[calc(100vh-8rem)] z-30 flex flex-col">
+        {/* モバイル時は高さを控えめに (45vh -> 250px程度または fit) */}
+        <div className={`
+             lg:col-span-7 bg-white rounded-2xl shadow-lg border border-stone-200 overflow-hidden sticky top-20 lg:top-24 z-30 flex flex-col
+             ${isMobile ? 'h-[340px]' : 'h-[45vh] lg:h-[calc(100vh-8rem)]'}
+           `}>
           <div className="absolute top-4 left-4 z-10 bg-stone-900/5 backdrop-blur-sm px-3 py-1 rounded-full border border-stone-900/10">
             <span className="text-xs font-bold text-stone-600 tracking-wider">プレビュー</span>
           </div>
-          <div className="w-full h-full flex items-center justify-center bg-stone-50/50">
-            <svg viewBox="0 0 400 500" className="w-full h-full max-h-[90%] drop-shadow-2xl" preserveAspectRatio="xMidYMid meet">
+
+          <div className="w-full h-full flex items-center justify-center bg-stone-50/50 relative">
+            {/* HTML Labels for Layout Flexibility */}
+            {isMobile ? (
+              <>
+                <div className="absolute top-[60px] left-[20px] text-xs font-bold text-stone-500 tracking-widest z-10">日の輪（上部）</div>
+                <div className="absolute top-[210px] left-[20px] text-xs font-bold text-stone-500 tracking-widest z-10">月の輪（下部）</div>
+              </>
+            ) : (
+              <>
+                <div className="absolute top-[30px] left-[25%] transform -translate-x-1/2 text-xs font-bold text-stone-500 tracking-widest z-10">日の輪（上部）</div>
+                <div className="absolute top-[30px] right-[25%] transform translate-x-1/2 text-xs font-bold text-stone-500 tracking-widest z-10">月の輪（下部）</div>
+              </>
+            )}
+
+            <svg
+              viewBox={isMobile ? "0 0 450 360" : "0 0 400 500"}
+              className="w-full h-full max-h-[90%] drop-shadow-2xl transition-all duration-500"
+              preserveAspectRatio="xMidYMid meet"
+            >
               <SVGDefs />
-              <circle cx="200" cy="250" r="180" fill="white" opacity="0.5" />
-              <g transform="translate(50, 20)">
-                <StringLoopDetail loopColor={hinowaColor.hex} bodyColor={bodyColor.hex} label="日の輪（上部）" />
+              {/* Background Circle - Adjust for orientation */}
+              {isMobile ? (
+                <circle cx="225" cy="180" r="140" fill="white" opacity="0.5" />
+              ) : (
+                <circle cx="200" cy="250" r="180" fill="white" opacity="0.5" />
+              )}
+
+              <g transform={isMobile ? "translate(10, 150) rotate(-90)" : "translate(50, 20)"}>
+                <StringLoopDetail loopColor={hinowaColor.hex} bodyColor={bodyColor.hex} />
               </g>
-              <g transform="translate(250, 20)">
-                <StringLoopDetail loopColor={tsukinowaColor.hex} bodyColor={bodyColor.hex} label="月の輪（下部）" />
+              <g transform={isMobile ? "translate(10, 330) rotate(-90)" : "translate(250, 20)"}>
+                <StringLoopDetail loopColor={tsukinowaColor.hex} bodyColor={bodyColor.hex} />
               </g>
             </svg>
           </div>
