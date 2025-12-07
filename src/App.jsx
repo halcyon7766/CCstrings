@@ -498,7 +498,7 @@ export default function KyudoStringCustomizer() {
             <div className="text-center pt-4 pb-2 text-stone-500 text-sm">
               <p className="mb-2">Produced by <a href="https://x.com/7n038" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-bold">@7n038</a></p>
               <p className="text-xs leading-relaxed">
-                オーダーに関するご相談・お問い合わせは<br />
+                このサイトに関するご相談・お問い合わせは<br />
                 上記X(旧Twitter)までお気軽にご連絡ください。
               </p>
             </div>
