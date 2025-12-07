@@ -230,8 +230,8 @@ export default function KyudoStringCustomizer() {
       <header className="bg-white border-b border-stone-200 sticky top-0 z-50 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-stone-900 text-white flex items-center justify-center rounded-lg font-serif font-bold text-lg shadow-md">弓</div>
-            <h1 className="text-xl font-bold tracking-tight text-stone-900">弦カスタムオーダー</h1>
+            <div className="w-9 h-9 bg-stone-900 text-white flex items-center justify-center rounded-lg font-serif font-bold text-lg shadow-md">CC</div>
+            <h1 className="text-xl font-bold tracking-tight text-stone-900">CCstrings</h1>
           </div>
         </div>
       </header>
@@ -477,6 +477,15 @@ export default function KyudoStringCustomizer() {
             <div className="bg-stone-50 border-2 border-dashed border-stone-200 rounded-xl p-6 flex flex-col items-center justify-center text-stone-400 gap-2 min-h-[120px]">
               <span className="text-xs font-bold tracking-widest uppercase opacity-70">Advertisement</span>
               <p className="text-sm">ここに広告が表示されます</p>
+            </div>
+
+            {/* Contact / Footer */}
+            <div className="text-center pt-4 pb-2 text-stone-500 text-sm">
+              <p className="mb-2">Produced by <a href="https://x.com/7n038" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-bold">@7n038</a></p>
+              <p className="text-xs leading-relaxed">
+                オーダーに関するご相談・お問い合わせは<br />
+                上記X(旧Twitter)までお気軽にご連絡ください。
+              </p>
             </div>
 
           </div>
