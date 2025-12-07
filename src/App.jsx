@@ -70,7 +70,7 @@ const StringLoopDetail = ({ loopColor, bodyColor }) => {
 
         {/* 1. ループ部分 (上の輪) - 修正：先端の尖りをなくし、完全に丸くする */}
         <path
-          d="M 43,110 C 38,80 20,10 50,10 S 62,80 57,110"
+          d="M 43,110 C 25,80 15,10 50,10 S 75,80 57,110"
           fill="none"
           stroke={loopColor}
           strokeWidth="10"
@@ -79,15 +79,15 @@ const StringLoopDetail = ({ loopColor, bodyColor }) => {
 
         {/* ループのテクスチャとハイライト */}
         <path
-          d="M 43,110 C 38,80 20,10 50,10 S 62,80 57,110"
+          d="M 43,110 C 25,80 15,10 50,10 S 75,80 57,110"
           fill="none"
-          stroke="url(#braidTexture)"
+          stroke="url(#fineWindingTexture)"
           strokeWidth="10"
           strokeLinecap="round"
-          opacity="0.6"
+          opacity="0.8"
         />
         <path
-          d="M 43,110 C 38,80 20,10 50,10 S 62,80 57,110"
+          d="M 43,110 C 25,80 15,10 50,10 S 75,80 57,110"
           fill="none"
           stroke="url(#highlightGradient)"
           strokeWidth="10"
@@ -96,9 +96,9 @@ const StringLoopDetail = ({ loopColor, bodyColor }) => {
         />
 
         {/* 2. 弦本体 (下に伸びる紐) */}
-        <line x1="50" y1="180" x2="50" y2="400" stroke={bodyColor} strokeWidth="8" strokeLinecap="round" />
-        <line x1="50" y1="180" x2="50" y2="400" stroke="url(#braidTexture)" strokeWidth="8" strokeLinecap="round" opacity="0.6" />
-        <line x1="50" y1="180" x2="50" y2="400" stroke="url(#highlightGradient)" strokeWidth="8" strokeLinecap="round" style={{ mixBlendMode: 'overlay' }} />
+        <line x1="50" y1="220" x2="50" y2="400" stroke={bodyColor} strokeWidth="8" strokeLinecap="round" />
+        <line x1="50" y1="220" x2="50" y2="400" stroke="url(#braidTexture)" strokeWidth="8" strokeLinecap="round" opacity="0.6" />
+        <line x1="50" y1="220" x2="50" y2="400" stroke="url(#highlightGradient)" strokeWidth="8" strokeLinecap="round" style={{ mixBlendMode: 'overlay' }} />
 
         {/* 3. 結束部分 (仕掛け/Neck) - ループからのつながりをより自然に */}
         <g>
@@ -107,8 +107,8 @@ const StringLoopDetail = ({ loopColor, bodyColor }) => {
             d="M 41,110
                L 41,120
                L 44,150
-               L 46,180
-               L 54,180
+               L 46,220
+               L 54,220
                L 56,150
                L 59,120
                L 59,110
@@ -123,21 +123,21 @@ const StringLoopDetail = ({ loopColor, bodyColor }) => {
 
           {/* 横巻きテクスチャ */}
           <path
-            d="M 41,110 L 41,120 L 44,150 L 46,180 L 54,180 L 56,150 L 59,120 L 59,110 Z"
+            d="M 41,110 L 41,120 L 44,150 L 46,220 L 54,220 L 56,150 L 59,120 L 59,110 Z"
             fill="url(#fineWindingTexture)"
             opacity="0.8"
           />
 
           {/* 立体感ハイライト */}
           <path
-            d="M 41,110 L 41,120 L 44,150 L 46,180 L 54,180 L 56,150 L 59,120 L 59,110 Z"
+            d="M 41,110 L 41,120 L 44,150 L 46,220 L 54,220 L 56,150 L 59,120 L 59,110 Z"
             fill="url(#highlightGradient)"
             style={{ mixBlendMode: 'overlay' }}
           />
 
           {/* 輪郭線 */}
           <path
-            d="M 41,110 L 41,120 L 44,150 L 46,180 M 59,110 L 59,120 L 56,150 L 54,180"
+            d="M 41,110 L 41,120 L 44,150 L 46,220 M 59,110 L 59,120 L 56,150 L 54,220"
             stroke="black"
             strokeOpacity="0.1"
             strokeWidth="0.5"
@@ -146,7 +146,7 @@ const StringLoopDetail = ({ loopColor, bodyColor }) => {
 
           {/* 結束下部の影 */}
           <path
-            d="M 46,178 Q 50,181 54,178"
+            d="M 46,218 Q 50,221 54,218"
             stroke="black"
             strokeOpacity="0.2"
             strokeWidth="1"
@@ -263,12 +263,17 @@ export default function KyudoStringCustomizer() {
       `日の輪: ${hinowaColor.name}`,
       `月の輪: ${tsukinowaColor.name}`,
       `----------------`,
-      `弓: ${bowBrand || '未入力'} (${bowLength} / ${bowStrength}kg)`,
-      `弭径: ${bowTipDiameter ? bowTipDiameter + 'mm' : '未入力'}`,
-      `時期: ${bowDate || '未入力'}`
-    ].join('\n');
+      `弓: ${bowBrand || '未入力'} (${bowLength} / ${bowStrength}kg)`
+    ];
 
-    navigator.clipboard.writeText(config);
+    if (bowTipDiameter) {
+      config.push(`弭径: ${bowTipDiameter}mm`);
+    }
+    if (bowDate) {
+      config.push(`時期: ${bowDate}`);
+    }
+
+    navigator.clipboard.writeText(config.join('\n'));
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -326,10 +331,10 @@ export default function KyudoStringCustomizer() {
                 <circle cx="200" cy="250" r="180" fill="white" opacity="0.5" />
               )}
 
-              <g transform={isMobile ? "translate(10, 150) rotate(-90)" : "translate(50, 20)"}>
+              <g transform={isMobile ? "translate(10, 150) rotate(-90)" : "translate(30, 20) scale(1.25)"}>
                 <StringLoopDetail loopColor={hinowaColor.hex} bodyColor={bodyColor.hex} />
               </g>
-              <g transform={isMobile ? "translate(10, 330) rotate(-90)" : "translate(250, 20)"}>
+              <g transform={isMobile ? "translate(10, 330) rotate(-90)" : "translate(220, 20) scale(1.25)"}>
                 <StringLoopDetail loopColor={tsukinowaColor.hex} bodyColor={bodyColor.hex} />
               </g>
             </svg>
@@ -341,7 +346,7 @@ export default function KyudoStringCustomizer() {
         <div className="lg:col-span-5 flex flex-col h-full relative">
 
           {/* Scrollable Content Area */}
-          <div className="flex-grow space-y-6 overflow-y-auto pr-2 pb-32 lg:pb-0 scrollbar-hide">
+          <div className="flex-grow space-y-6 overflow-y-auto lg:pr-2 pb-32 lg:pb-0 scrollbar-hide">
 
             {/* 1. 素材選択 */}
             <section className="bg-white p-5 rounded-xl border border-stone-200 shadow-sm">
@@ -525,10 +530,10 @@ export default function KyudoStringCustomizer() {
                 <div className="relative">
                   <input
                     type="number"
-                    step="0.1"
+                    step="1"
                     value={bowTipDiameter}
                     onChange={(e) => setBowTipDiameter(e.target.value)}
-                    placeholder="例：21.5"
+                    placeholder="例：68"
                     className="w-full bg-stone-50 border border-stone-200 rounded-lg py-3 px-4 pr-10 text-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 placeholder-stone-400 transition-colors"
                   />
                   <span className="absolute right-4 top-1/2 transform -translate-y-1/2 text-stone-500 pointer-events-none text-sm font-medium">mm</span>
@@ -566,7 +571,7 @@ export default function KyudoStringCustomizer() {
           </div>
 
           {/* Footer Action */}
-          <div className="mt-6 pt-6 border-t border-stone-200 bg-stone-100/90 backdrop-blur-sm sticky bottom-0 z-20">
+          <div className="mt-6 pt-6 pb-8 border-t border-stone-200 bg-stone-100/90 backdrop-blur-sm sticky bottom-0 z-20">
             <button
               className={`w-full font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-3 transition-all transform active:scale-[0.99] shadow-lg
                 ${copied ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-stone-900 hover:bg-stone-800 text-white'}
