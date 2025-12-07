@@ -57,30 +57,29 @@ const StringLoopDetail = ({ loopColor, bodyColor, label }) => {
 
       <g transform="translate(0, 25)" filter="url(#dropShadow)">
 
-        {/* 1. ループ部分 (上の輪) - 修正：少し膨らみを持たせつつ頂点は丸く */}
-        {/* 以前より少し下の幅を持たせて、急激すぎない自然な曲線へ */}
+        {/* 1. ループ部分 (上の輪) - 修正：先端の尖りをなくし、完全に丸くする */}
         <path
-          d="M 43,110 C 42,80 38,40 50,8 C 62,40 58,80 57,110"
+          d="M 43,110 C 38,80 20,10 50,10 S 62,80 57,110"
           fill="none"
           stroke={loopColor}
-          strokeWidth="9"
+          strokeWidth="10"
           strokeLinecap="round"
         />
 
         {/* ループのテクスチャとハイライト */}
         <path
-          d="M 43,110 C 42,80 38,40 50,8 C 62,40 58,80 57,110"
+          d="M 43,110 C 38,80 20,10 50,10 S 62,80 57,110"
           fill="none"
           stroke="url(#braidTexture)"
-          strokeWidth="9"
+          strokeWidth="10"
           strokeLinecap="round"
           opacity="0.6"
         />
         <path
-          d="M 43,110 C 42,80 38,40 50,8 C 62,40 58,80 57,110"
+          d="M 43,110 C 38,80 20,10 50,10 S 62,80 57,110"
           fill="none"
           stroke="url(#highlightGradient)"
-          strokeWidth="9"
+          strokeWidth="10"
           strokeLinecap="round"
           style={{ mixBlendMode: 'overlay' }}
         />
@@ -260,7 +259,7 @@ export default function KyudoStringCustomizer() {
         {/* Left Column: Preview Area */}
         <div className="lg:col-span-7 bg-white rounded-2xl shadow-lg border border-stone-200 overflow-hidden sticky top-20 lg:top-24 h-[45vh] lg:h-[calc(100vh-8rem)] z-30 flex flex-col">
           <div className="absolute top-4 left-4 z-10 bg-stone-900/5 backdrop-blur-sm px-3 py-1 rounded-full border border-stone-900/10">
-            <span className="text-xs font-bold text-stone-600 tracking-wider">PREVIEW</span>
+            <span className="text-xs font-bold text-stone-600 tracking-wider">プレビュー</span>
           </div>
           <div className="w-full h-full flex items-center justify-center bg-stone-50/50">
             <svg viewBox="0 0 400 500" className="w-full h-full max-h-[90%] drop-shadow-2xl" preserveAspectRatio="xMidYMid meet">
