@@ -302,7 +302,7 @@ export default function KyudoStringCustomizer() {
               </div>
               <p className="mt-3 text-xs text-stone-500 flex items-start gap-1.5 leading-relaxed">
                 <Info size={14} className="mt-0.5 flex-shrink-0" />
-                <span>素材によって弦の太さ、伸び、打感が変化します。</span>
+                <span>素材によって弦の伸びや打感が変化します。</span>
               </p>
             </section>
 
