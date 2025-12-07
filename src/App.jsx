@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { ChevronDown, Info, Copy, Check } from 'lucide-react';
+import { ChevronDown, Info, Copy, Check, RotateCcw } from 'lucide-react';
 import {
   MATERIALS,
   COLORS,
@@ -63,7 +63,7 @@ const useIsMobile = () => {
   return isMobile;
 };
 
-const StringLoopDetail = ({ loopColor, bodyColor }) => {
+const StringLoopDetail = ({ loopColor, bodyColor, isMobile }) => {
   return (
     <g>
       <g transform="translate(0, 25)" filter="url(#dropShadow)">
@@ -96,9 +96,9 @@ const StringLoopDetail = ({ loopColor, bodyColor }) => {
         />
 
         {/* 2. 弦本体 (下に伸びる紐) */}
-        <line x1="50" y1="220" x2="50" y2="400" stroke={bodyColor} strokeWidth="8" strokeLinecap="round" />
-        <line x1="50" y1="220" x2="50" y2="400" stroke="url(#braidTexture)" strokeWidth="8" strokeLinecap="round" opacity="0.6" />
-        <line x1="50" y1="220" x2="50" y2="400" stroke="url(#highlightGradient)" strokeWidth="8" strokeLinecap="round" style={{ mixBlendMode: 'overlay' }} />
+        <line x1="50" y1="220" x2="50" y2={isMobile ? "350" : "600"} stroke={bodyColor} strokeWidth="8" strokeLinecap="round" />
+        <line x1="50" y1="220" x2="50" y2={isMobile ? "350" : "600"} stroke="url(#braidTexture)" strokeWidth="8" strokeLinecap="round" opacity="0.6" />
+        <line x1="50" y1="220" x2="50" y2={isMobile ? "350" : "600"} stroke="url(#highlightGradient)" strokeWidth="8" strokeLinecap="round" style={{ mixBlendMode: 'overlay' }} />
 
         {/* 3. 結束部分 (仕掛け/Neck) - ループからのつながりをより自然に */}
         <g>
@@ -230,6 +230,9 @@ export default function KyudoStringCustomizer() {
   const [hinowaColor, setHinowaColor] = useState(HINOWA_COLORS[0]); // 赤
   const [tsukinowaColor, setTsukinowaColor] = useState(TSUKINOWA_COLORS.find(c => c.id === 'blue') || TSUKINOWA_COLORS[0]); // 青
 
+  const [hinowaRot, setHinowaRot] = useState(false);
+  const [tsukinowaRot, setTsukinowaRot] = useState(false);
+
   // 入力ステート
   const [bowBrand, setBowBrand] = useState('');
   const [bowLength, setBowLength] = useState('並');
@@ -287,7 +290,7 @@ export default function KyudoStringCustomizer() {
             <div className="text-stone-900 p-1">
               <Logo className="w-8 h-8" />
             </div>
-            <h1 className="text-xl font-bold tracking-tight text-stone-900">CCstrings <span className="text-sm font-normal text-stone-500 ml-1">-ループ弦シミュレーター</span></h1>
+            <h1 className="text-xl font-bold tracking-tight text-stone-900">つるしみゅ <span className="text-sm font-normal text-stone-500 ml-1">-ループ弦シミュレーター</span></h1>
           </div>
         </div>
       </header>
@@ -298,28 +301,46 @@ export default function KyudoStringCustomizer() {
         {/* モバイル時は高さを控えめに (45vh -> 250px程度または fit) */}
         <div className={`
              lg:col-span-7 bg-white rounded-2xl shadow-lg border border-stone-200 overflow-hidden sticky top-20 lg:top-24 z-30 flex flex-col
-             ${isMobile ? 'h-[340px]' : 'h-[45vh] lg:h-[calc(100vh-8rem)]'}
+             ${isMobile ? 'h-[240px]' : 'h-[45vh] lg:h-[calc(100vh-8rem)]'}
            `}>
-          <div className="absolute top-4 left-4 z-10 bg-stone-900/5 backdrop-blur-sm px-3 py-1 rounded-full border border-stone-900/10">
-            <span className="text-xs font-bold text-stone-600 tracking-wider">プレビュー</span>
-          </div>
+
 
           <div className="w-full h-full flex items-center justify-center bg-stone-50/50 relative">
             {/* HTML Labels for Layout Flexibility */}
             {isMobile ? (
               <>
-                <div className="absolute top-[60px] left-[20px] text-xs font-bold text-stone-500 tracking-widest z-10">日の輪（上部）</div>
-                <div className="absolute top-[210px] left-[20px] text-xs font-bold text-stone-500 tracking-widest z-10">月の輪（下部）</div>
+                <div className="absolute top-[15px] left-1/2 transform -translate-x-1/2 w-full flex items-center justify-center gap-2 z-10">
+                  <span className="text-xs font-bold text-stone-500 tracking-widest">日の輪（上部）</span>
+                  <button onClick={() => setHinowaRot(!hinowaRot)} className="p-1 bg-stone-100 rounded-full hover:bg-stone-200 transition-colors">
+                    <RotateCcw size={12} className="text-stone-600" />
+                  </button>
+                </div>
+                <div className="absolute top-[135px] left-1/2 transform -translate-x-1/2 w-full flex items-center justify-center gap-2 z-10">
+                  <span className="text-xs font-bold text-stone-500 tracking-widest">月の輪（下部）</span>
+                  <button onClick={() => setTsukinowaRot(!tsukinowaRot)} className="p-1 bg-stone-100 rounded-full hover:bg-stone-200 transition-colors">
+                    <RotateCcw size={12} className="text-stone-600" />
+                  </button>
+                </div>
               </>
             ) : (
               <>
-                <div className="absolute top-[30px] left-[25%] transform -translate-x-1/2 text-xs font-bold text-stone-500 tracking-widest z-10">日の輪（上部）</div>
-                <div className="absolute top-[30px] right-[25%] transform translate-x-1/2 text-xs font-bold text-stone-500 tracking-widest z-10">月の輪（下部）</div>
+                <div className="absolute top-[30px] left-[25%] transform -translate-x-1/2 flex items-center gap-2 z-10">
+                  <span className="text-xs font-bold text-stone-500 tracking-widest">日の輪（上部）</span>
+                  <button onClick={() => setHinowaRot(!hinowaRot)} className="p-1.5 bg-stone-100 rounded-full hover:bg-stone-200 transition-colors shadow-sm">
+                    <RotateCcw size={14} className="text-stone-600" />
+                  </button>
+                </div>
+                <div className="absolute top-[30px] right-[25%] transform translate-x-1/2 flex items-center gap-2 z-10">
+                  <span className="text-xs font-bold text-stone-500 tracking-widest">月の輪（下部）</span>
+                  <button onClick={() => setTsukinowaRot(!tsukinowaRot)} className="p-1.5 bg-stone-100 rounded-full hover:bg-stone-200 transition-colors shadow-sm">
+                    <RotateCcw size={14} className="text-stone-600" />
+                  </button>
+                </div>
               </>
             )}
 
             <svg
-              viewBox={isMobile ? "0 0 450 360" : "0 0 400 500"}
+              viewBox={isMobile ? "0 0 360 380" : "0 0 400 950"}
               className="w-full h-full max-h-[90%] drop-shadow-2xl transition-all duration-500"
               preserveAspectRatio="xMidYMid meet"
             >
@@ -331,11 +352,11 @@ export default function KyudoStringCustomizer() {
                 <circle cx="200" cy="250" r="180" fill="white" opacity="0.5" />
               )}
 
-              <g transform={isMobile ? "translate(10, 150) rotate(-90)" : "translate(30, 20) scale(1.25)"}>
-                <StringLoopDetail loopColor={hinowaColor.hex} bodyColor={bodyColor.hex} />
+              <g transform={`${isMobile ? "translate(10, 95) rotate(-90)" : "translate(25, 20) scale(1.5)"} ${hinowaRot ? (isMobile ? 'rotate(180, 50, 175)' : 'rotate(180, 50, 300)') : ''}`}>
+                <StringLoopDetail loopColor={hinowaColor.hex} bodyColor={bodyColor.hex} isMobile={isMobile} />
               </g>
-              <g transform={isMobile ? "translate(10, 330) rotate(-90)" : "translate(220, 20) scale(1.25)"}>
-                <StringLoopDetail loopColor={tsukinowaColor.hex} bodyColor={bodyColor.hex} />
+              <g transform={`${isMobile ? "translate(10, 285) rotate(-90)" : "translate(225, 20) scale(1.5)"} ${tsukinowaRot ? (isMobile ? 'rotate(180, 50, 175)' : 'rotate(180, 50, 300)') : ''}`}>
+                <StringLoopDetail loopColor={tsukinowaColor.hex} bodyColor={bodyColor.hex} isMobile={isMobile} />
               </g>
             </svg>
           </div>
@@ -343,7 +364,7 @@ export default function KyudoStringCustomizer() {
         </div>
 
         {/* Right Column: Controls */}
-        <div className="lg:col-span-5 flex flex-col h-full relative">
+        <div className="lg:col-span-5 flex flex-col relative h-[45vh] lg:h-[calc(100vh-8rem)] bg-white rounded-2xl shadow-lg border border-stone-200 overflow-hidden">
 
           {/* Scrollable Content Area */}
           <div className="flex-grow space-y-6 overflow-y-auto lg:pr-2 pb-32 lg:pb-0 scrollbar-hide">
