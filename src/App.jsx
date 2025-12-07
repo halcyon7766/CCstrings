@@ -171,6 +171,29 @@ const ColorSwatch = ({ color, isSelected, onClick, disabled = false }) => (
   </button>
 );
 
+// --- AdSense Component ---
+const AdUnit = () => {
+  useEffect(() => {
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      console.error("AdSense error", e);
+    }
+  }, []);
+
+  return (
+    <div className="my-4 min-h-[100px] bg-stone-50 rounded-xl overflow-hidden text-center">
+      <div className="text-[10px] text-stone-300 py-1 uppercase tracking-widest">Sponsored</div>
+      <ins className="adsbygoogle"
+        style={{ display: 'block' }}
+        data-ad-client="ca-pub-9880919415099202"
+        data-ad-slot="7354574938"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    </div>
+  );
+};
+
 export default function KyudoStringCustomizer() {
   const [material, setMaterial] = useState(MATERIALS[0]);
   const [thickness, setThickness] = useState(THICKNESSES[1]); // デフォルト: 中
@@ -205,18 +228,14 @@ export default function KyudoStringCustomizer() {
 
   const handleCopyConfig = () => {
     const config = [
-      `【弦カスタムオーダー構成】`,
-      `素材: ${material.name}`,
-      `弦の太さ: ${thickness.name}`,
+      `【${material.name} / ${thickness.name}】`, // タイトルに構成を含める
       `弦の色: ${bodyColor.name}`,
       `日の輪: ${hinowaColor.name}`,
       `月の輪: ${tsukinowaColor.name}`,
       `----------------`,
-      `弓の銘柄: ${bowBrand || '未入力'}`,
-      `弓の長さ: ${bowLength}`,
-      `弓の強さ: ${bowStrength}kg`,
-      `弓弭の外径: ${bowTipDiameter ? bowTipDiameter + 'mm' : '未入力'}`,
-      `購入・製造時期: ${bowDate || '未入力'}`
+      `弓: ${bowBrand || '未入力'} (${bowLength} / ${bowStrength}kg)`,
+      `弭径: ${bowTipDiameter ? bowTipDiameter + 'mm' : '未入力'}`,
+      `時期: ${bowDate || '未入力'}`
     ].join('\n');
 
     navigator.clipboard.writeText(config);
@@ -473,11 +492,7 @@ export default function KyudoStringCustomizer() {
               </div>
             </div>
 
-            {/* 広告スペース (Placeholder) */}
-            <div className="bg-stone-50 border-2 border-dashed border-stone-200 rounded-xl p-6 flex flex-col items-center justify-center text-stone-400 gap-2 min-h-[120px]">
-              <span className="text-xs font-bold tracking-widest uppercase opacity-70">Advertisement</span>
-              <p className="text-sm">ここに広告が表示されます</p>
-            </div>
+            <AdUnit />
 
             {/* Contact / Footer */}
             <div className="text-center pt-4 pb-2 text-stone-500 text-sm">
