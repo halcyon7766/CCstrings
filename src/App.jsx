@@ -282,7 +282,7 @@ export default function KyudoStringCustomizer() {
             <div className="text-stone-900 p-1">
               <Logo className="w-8 h-8" />
             </div>
-            <h1 className="text-xl font-bold tracking-tight text-stone-900">CCstrings</h1>
+            <h1 className="text-xl font-bold tracking-tight text-stone-900">CCstrings <span className="text-sm font-normal text-stone-500 ml-1">-ループ弦シミュレーター</span></h1>
           </div>
         </div>
       </header>
