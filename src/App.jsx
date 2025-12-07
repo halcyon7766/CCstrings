@@ -204,6 +204,25 @@ const AdUnit = () => {
   );
 };
 
+// --- Logo Component ---
+const Logo = ({ className }) => (
+  <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Background Circle / Mato Enso style */}
+    <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="8" className="opacity-100" />
+
+    {/* Stylized String / Arrow Shaft */}
+    <path
+      d="M50 15 L50 85"
+      stroke="currentColor"
+      strokeWidth="6"
+      strokeLinecap="round"
+    />
+
+    {/* Cross mark mimic - Minimal target center */}
+    <circle cx="50" cy="50" r="6" fill="currentColor" />
+  </svg>
+);
+
 export default function KyudoStringCustomizer() {
   const [material, setMaterial] = useState(MATERIALS[0]);
   const [thickness, setThickness] = useState(THICKNESSES[1]); // デフォルト: 中
@@ -260,7 +279,9 @@ export default function KyudoStringCustomizer() {
       <header className="bg-white border-b border-stone-200 sticky top-0 z-50 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-stone-900 text-white flex items-center justify-center rounded-lg font-serif font-bold text-lg shadow-md">CC</div>
+            <div className="text-stone-900 p-1">
+              <Logo className="w-8 h-8" />
+            </div>
             <h1 className="text-xl font-bold tracking-tight text-stone-900">CCstrings</h1>
           </div>
         </div>
