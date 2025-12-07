@@ -1,29 +1,46 @@
 // カラーパレット
 export const COLORS = [
     { id: 'white', name: '白', hex: '#F3F4F6', border: '#D1D5DB' },
+    { id: 'black', name: '黒', hex: '#1F2937', border: 'transparent' },
+    { id: 'brown', name: '茶', hex: '#5D4037', border: 'transparent' },
     { id: 'pink', name: 'ピンク', hex: '#F9A8D4', border: 'transparent' },
     { id: 'gold', name: '金', hex: '#D97706', border: 'transparent' },
     { id: 'yellow_ochre', name: '山吹', hex: '#EAB308', border: 'transparent' },
     { id: 'khaki', name: 'カーキ', hex: '#A3A375', border: 'transparent' },
-    { id: 'brown', name: '茶', hex: '#5D4037', border: 'transparent' },
     { id: 'grey', name: 'グレー', hex: '#4B5563', border: 'transparent' },
-    { id: 'black', name: '黒', hex: '#1F2937', border: 'transparent' },
     { id: 'blue', name: '青', hex: '#2563EB', border: 'transparent' },
     { id: 'cyan', name: '水色', hex: '#06B6D4', border: 'transparent' },
     { id: 'navy', name: '紺', hex: '#1E3A8A', border: 'transparent' },
     { id: 'royal', name: 'ロイヤルブルー', hex: '#3B82F6', border: 'transparent' },
-    { id: 'purple', name: '藤', hex: '#A855F7', border: 'transparent' },
+    { id: 'purple', name: '紫', hex: '#A855F7', border: 'transparent' },
+    { id: 'green', name: '緑', hex: '#16A34A', border: 'transparent' },
     { id: 'dark_green', name: '深緑', hex: '#064E3B', border: 'transparent' },
     { id: 'moss', name: '苔', hex: '#3F6212', border: 'transparent' },
     { id: 'teal', name: '青緑', hex: '#0F766E', border: 'transparent' },
     { id: 'slate', name: '鉄御納戸', hex: '#475569', border: 'transparent' },
     { id: 'wine', name: 'エンジ', hex: '#881337', border: 'transparent' },
     { id: 'red', name: '赤', hex: '#DC2626', border: 'transparent' },
+    { id: 'orange', name: 'オレンジ', hex: '#F97316', border: 'transparent' },
+    { id: 'yellow', name: '黄', hex: '#EAB308', border: 'transparent' },
 ];
 
 export const HINOWA_COLORS = [
     { id: 'red', name: '赤', hex: '#DC2626', border: 'transparent' },
 ];
+
+export const TSUKINOWA_COLORS = [
+    COLORS.find(c => c.id === 'white'),
+    COLORS.find(c => c.id === 'blue'),
+    COLORS.find(c => c.id === 'black'),
+    COLORS.find(c => c.id === 'purple'),
+    COLORS.find(c => c.id === 'brown'),
+    COLORS.find(c => c.id === 'green'),
+    COLORS.find(c => c.id === 'cyan'),
+    COLORS.find(c => c.id === 'orange'),
+    COLORS.find(c => c.id === 'yellow'),
+    COLORS.find(c => c.id === 'gold'),
+    COLORS.find(c => c.id === 'pink'),
+].filter(Boolean);
 
 // すべての色IDのリスト（デフォルト用）
 const ALL_COLOR_IDS = COLORS.map(c => c.id);

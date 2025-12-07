@@ -6,7 +6,8 @@ import {
   HINOWA_COLORS,
   BOW_LENGTHS,
   THICKNESSES,
-  BOW_STRENGTHS
+  BOW_STRENGTHS,
+  TSUKINOWA_COLORS
 } from './data';
 
 // --- SVG Components ---
@@ -208,7 +209,7 @@ export default function KyudoStringCustomizer() {
   const [thickness, setThickness] = useState(THICKNESSES[1]); // デフォルト: 中
   const [bodyColor, setBodyColor] = useState(COLORS[0]); // 白
   const [hinowaColor, setHinowaColor] = useState(HINOWA_COLORS[0]); // 赤
-  const [tsukinowaColor, setTsukinowaColor] = useState(COLORS[8]); // 青
+  const [tsukinowaColor, setTsukinowaColor] = useState(TSUKINOWA_COLORS.find(c => c.id === 'blue') || TSUKINOWA_COLORS[0]); // 青
 
   // 入力ステート
   const [bowBrand, setBowBrand] = useState('');
@@ -426,7 +427,7 @@ export default function KyudoStringCustomizer() {
                   <span className="text-sm font-medium text-stone-600 bg-stone-100 px-2 py-0.5 rounded">{tsukinowaColor.name}</span>
                 </div>
                 <div className="flex flex-wrap gap-2.5">
-                  {COLORS.map((color) => (
+                  {TSUKINOWA_COLORS.map((color) => (
                     <ColorSwatch
                       key={`tsuki-${color.id}`}
                       color={color}
