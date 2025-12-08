@@ -380,6 +380,7 @@ export default function KyudoStringCustomizer() {
                 <span className="text-stone-400 text-sm md:text-base ml-2 font-normal">ループ弦シミュレーター</span>
               </span>
             </h1></div>
+        </div>
       </header>
 
       <main className="flex-grow max-w-6xl mx-auto w-full px-4 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative">
