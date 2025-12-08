@@ -387,7 +387,7 @@ export default function KyudoStringCustomizer() {
         {/* モバイル時は高さを控えめに (45vh -> 250px程度または fit) */}
         <div className={`
              lg:col-span-7 bg-white rounded-2xl shadow-lg border border-stone-200 overflow-hidden sticky top-20 lg:top-24 z-30 flex flex-col
-             ${isMobile ? 'h-[400px]' : 'h-[45vh] lg:h-[calc(100vh-8rem)]'}
+             ${isMobile ? 'h-[320px]' : 'h-[45vh] lg:h-[calc(100vh-8rem)]'}
            `}>
 
 
@@ -395,14 +395,14 @@ export default function KyudoStringCustomizer() {
             {/* HTML Labels for Layout Flexibility */}
             {isMobile ? (
               <>
-                <div className="absolute top-[20px] left-[25%] transform -translate-x-1/2 flex items-center gap-2 z-10 w-auto">
-                  <span className="text-xs font-bold text-stone-500 tracking-widest whitespace-nowrap">日の輪（上部）</span>
+                <div className="absolute top-[10px] left-1/2 transform -translate-x-1/2 w-full flex items-center justify-center gap-2 z-10">
+                  <span className="text-xs font-bold text-stone-500 tracking-widest">日の輪（上部）</span>
                   <button onClick={() => setHinowaRot(!hinowaRot)} className="p-1 bg-stone-100 rounded-full hover:bg-stone-200 transition-colors">
                     <RotateCcw size={12} className="text-stone-600" />
                   </button>
                 </div>
-                <div className="absolute top-[20px] right-[25%] transform translate-x-1/2 flex items-center gap-2 z-10 w-auto">
-                  <span className="text-xs font-bold text-stone-500 tracking-widest whitespace-nowrap">月の輪（下部）</span>
+                <div className="absolute top-[140px] left-1/2 transform -translate-x-1/2 w-full flex items-center justify-center gap-2 z-10">
+                  <span className="text-xs font-bold text-stone-500 tracking-widest">月の輪（下部）</span>
                   <button onClick={() => setTsukinowaRot(!tsukinowaRot)} className="p-1 bg-stone-100 rounded-full hover:bg-stone-200 transition-colors">
                     <RotateCcw size={12} className="text-stone-600" />
                   </button>
@@ -426,22 +426,22 @@ export default function KyudoStringCustomizer() {
             )}
 
             <svg
-              viewBox={isMobile ? "0 0 350 450" : "0 0 400 950"}
+              viewBox={isMobile ? "0 0 360 260" : "0 0 400 950"}
               className="w-full h-full max-h-[90%] drop-shadow-2xl transition-all duration-500"
               preserveAspectRatio="xMidYMid meet"
             >
               <SVGDefs />
               {/* Background Circle - Adjust for orientation */}
               {isMobile ? (
-                <circle cx="175" cy="225" r="160" fill="white" opacity="0.5" />
+                <circle cx="225" cy="180" r="140" fill="white" opacity="0.5" />
               ) : (
                 <circle cx="200" cy="250" r="180" fill="white" opacity="0.5" />
               )}
 
-              <g transform={`${isMobile ? "translate(30, 50)" : "translate(25, 20) scale(1.5)"} ${hinowaRot ? (isMobile ? 'rotate(180, 50, 175)' : 'rotate(180, 50, 300)') : ''}`}>
+              <g transform={`${isMobile ? "translate(0, 60) rotate(-90)" : "translate(25, 20) scale(1.5)"} ${hinowaRot ? (isMobile ? 'rotate(180, 50, 175)' : 'rotate(180, 50, 300)') : ''}`}>
                 <StringLoopDetail loopColor={hinowaColor.hex} bodyColor={bodyColor.hex} isMobile={isMobile} />
               </g>
-              <g transform={`${isMobile ? "translate(220, 50)" : "translate(225, 20) scale(1.5)"} ${tsukinowaRot ? (isMobile ? 'rotate(180, 50, 175)' : 'rotate(180, 50, 300)') : ''}`}>
+              <g transform={`${isMobile ? "translate(0, 190) rotate(-90)" : "translate(225, 20) scale(1.5)"} ${tsukinowaRot ? (isMobile ? 'rotate(180, 50, 175)' : 'rotate(180, 50, 300)') : ''}`}>
                 <StringLoopDetail loopColor={tsukinowaColor.hex} bodyColor={bodyColor.hex} isMobile={isMobile} />
               </g>
             </svg>
