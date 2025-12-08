@@ -374,7 +374,7 @@ export default function KyudoStringCustomizer() {
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <h1 className="text-xl md:text-2xl font-bold tracking-tight flex items-center gap-3">
-              <img src="/logo.svg" alt="Logo" className="h-8 w-8 md:h-10 md:w-10" />
+              <Logo className="h-8 w-8 md:h-10 md:w-10 text-stone-800" />
               <span>
                 <span className="text-stone-800">つるしみゅ</span>
                 <span className="text-stone-400 text-sm md:text-base ml-2 font-normal">ループ弦シミュレーター</span>
