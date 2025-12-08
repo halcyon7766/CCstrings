@@ -438,10 +438,10 @@ export default function KyudoStringCustomizer() {
                 <circle cx="200" cy="250" r="180" fill="white" opacity="0.5" />
               )}
 
-              <g transform={`${isMobile ? "translate(-15, 100) rotate(-90)" : "translate(25, 20) scale(1.5)"} ${hinowaRot ? (isMobile ? 'rotate(180, 50, 160)' : 'rotate(180, 50, 300)') : ''}`}>
+              <g transform={`${isMobile ? "translate(-15, 100) rotate(-90)" : "translate(25, 20) scale(1.5)"} ${hinowaRot ? (isMobile ? 'rotate(180, 50, 200)' : 'rotate(180, 50, 300)') : ''}`}>
                 <StringLoopDetail loopColor={hinowaColor.hex} bodyColor={bodyColor.hex} isMobile={isMobile} />
               </g>
-              <g transform={`${isMobile ? "translate(-15, 230) rotate(-90)" : "translate(225, 20) scale(1.5)"} ${tsukinowaRot ? (isMobile ? 'rotate(180, 50, 160)' : 'rotate(180, 50, 300)') : ''}`}>
+              <g transform={`${isMobile ? "translate(-15, 230) rotate(-90)" : "translate(225, 20) scale(1.5)"} ${tsukinowaRot ? (isMobile ? 'rotate(180, 50, 200)' : 'rotate(180, 50, 300)') : ''}`}>
                 <StringLoopDetail loopColor={tsukinowaColor.hex} bodyColor={bodyColor.hex} isMobile={isMobile} />
               </g>
             </svg>
