@@ -63,6 +63,92 @@ const useIsMobile = () => {
   return isMobile;
 };
 
+
+
+const AboutSection = () => (
+  <div className="mt-12 bg-white rounded-2xl shadow-sm border border-stone-200 p-6 lg:p-10 space-y-8 text-stone-700">
+    <section>
+      <h3 className="text-xl font-bold mb-4 flex items-center gap-2 border-b border-stone-100 pb-2">
+        <span className="text-stone-900">つるしみゅについて</span>
+      </h3>
+      <p className="leading-relaxed mb-4">
+        「つるしみゅ」は、弓道で使用される弦（つる）のカラーオーダーをシミュレーションするためのツールです。
+        日の輪（上部の輪）、月の輪（下部の輪）、そして弦本体の色を自由に組み合わせることで、
+        自分だけのオリジナルの弦をイメージすることができます。
+      </p>
+      <p className="leading-relaxed">
+        多くの弓具店では弦のカラーオーダーを受け付けていますが、
+        実際の仕上がりを想像するのは難しいものです。
+        このツールを使えば、画面上でリアルな仕上がりを確認しながら、納得のいく組み合わせを見つけることができます。
+      </p>
+    </section>
+
+    <section>
+      <h3 className="text-xl font-bold mb-4 flex items-center gap-2 border-b border-stone-100 pb-2">
+        <span className="text-stone-900">機能と使い方</span>
+      </h3>
+      <ul className="list-disc list-inside space-y-2 ml-2">
+        <li><strong>素材の選択:</strong> 響、光牙、快天など、代表的な弦の素材から選択できます。</li>
+        <li><strong>太さの選択:</strong> 弓力や好みに合わせて、弦の太さを変更できます。</li>
+        <li><strong>直感的なカラー変更:</strong> 日の輪、月の輪、弦本体の色をタップするだけで瞬時に変更できます。</li>
+        <li><strong>360度プレビュー:</strong> 回転ボタンを使って、弦を180度反転させ、裏側のデザインも確認できます。</li>
+        <li><strong>構成のコピー:</strong> 決定した組み合わせは「構成をコピー」ボタンでテキストとして保存し、そのまま注文メールなどに貼り付けることができます。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 className="text-xl font-bold mb-4 flex items-center gap-2 border-b border-stone-100 pb-2">
+        <span className="text-stone-900">素材ガイド</span>
+      </h3>
+      <div className="grid md:grid-cols-2 gap-4">
+        <div className="bg-stone-50 p-4 rounded-lg">
+          <h4 className="font-bold mb-2 text-stone-900">響（ひびき）</h4>
+          <p className="text-sm">
+            高い反発力と鋭い弦音が特徴。最も広く使われているスタンダードな合成弦です。
+            耐久性も高く、練習から試合まで幅広く対応します。
+          </p>
+        </div>
+        <div className="bg-stone-50 p-4 rounded-lg">
+          <h4 className="font-bold mb-2 text-stone-900">光牙（こうが）</h4>
+          <p className="text-sm">
+            繊維の密度が高く、硬めの引き心地が特徴です。
+            矢飛びの良さに定評があり、より鋭い離れを求める射手に好まれます。
+          </p>
+        </div>
+        <div className="bg-stone-50 p-4 rounded-lg">
+          <h4 className="font-bold mb-2 text-stone-900">快天（かいてん）</h4>
+          <p className="text-sm">
+            柔軟性があり、扱いやすい弦です。
+            弦音が柔らかく、手への衝撃も比較的少ないため、初心者から中級者にもおすすめです。
+          </p>
+        </div>
+        <div className="bg-stone-50 p-4 rounded-lg">
+          <h4 className="font-bold mb-2 text-stone-900">吟（ぎん）</h4>
+          <p className="text-sm">
+            最高級の合成繊維を使用。
+            麻弦に近い打感を追求しており、冴えた弦音と鋭い矢飛びを両立させています。
+          </p>
+        </div>
+      </div>
+      <p className="mt-4 text-xs text-stone-500">
+        ※素材の特性は一般的な傾向であり、実際の使用感には個人差があります。
+      </p>
+    </section>
+
+    <section className="text-sm text-stone-500 border-t border-stone-100 pt-4">
+      <h4 className="font-bold mb-2">免責事項・プライバシーポリシー</h4>
+      <p>
+        本シミュレーターは色の組み合わせをイメージするためのものであり、
+        実際の製品の色味や質感と完全に一致することを保証するものではありません。
+        お使いのディスプレイ環境によっても見え方が異なる場合があります。<br />
+        当サイトでは、Google AdSenseを含む第三者配信の広告サービスを利用しており、
+        ユーザーの興味に応じた広告を表示するためにCookieを使用することがあります。
+        Cookieを無効にする設定や詳細については、<a href="https://policies.google.com/technologies/ads" target="_blank" rel="noreferrer" className="underline hover:text-stone-700">Googleのポリシーと規約</a>をご確認ください。
+      </p>
+    </section>
+  </div>
+);
+
 const StringLoopDetail = ({ loopColor, bodyColor, isMobile }) => {
   return (
     <g>
@@ -603,6 +689,11 @@ export default function KyudoStringCustomizer() {
               {copied ? 'コピーしました！' : '構成をコピー'}
             </button>
           </div>
+        </div>
+
+        {/* 3. About Section (Full width below) */}
+        <div className="lg:col-span-12">
+          <AboutSection />
         </div>
       </main>
     </div>
