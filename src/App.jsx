@@ -373,12 +373,13 @@ export default function KyudoStringCustomizer() {
       <header className="bg-white border-b border-stone-200 sticky top-0 z-50 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="text-stone-900 p-1">
-              <Logo className="w-8 h-8" />
-            </div>
-            <h1 className="text-xl font-bold tracking-tight text-stone-900">つるしみゅ <span className="text-sm font-normal text-stone-500 ml-1">-ループ弦シミュレーター</span></h1>
-          </div>
-        </div>
+            <h1 className="text-xl md:text-2xl font-bold tracking-tight flex items-center gap-3">
+              <img src="/logo.svg" alt="Logo" className="h-8 w-8 md:h-10 md:w-10" />
+              <span>
+                <span className="text-stone-800">つるしみゅ</span>
+                <span className="text-stone-400 text-sm md:text-base ml-2 font-normal">ループ弦シミュレーター</span>
+              </span>
+            </h1></div>
       </header>
 
       <main className="flex-grow max-w-6xl mx-auto w-full px-4 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative">
