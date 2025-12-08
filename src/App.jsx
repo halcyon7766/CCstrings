@@ -182,9 +182,9 @@ const StringLoopDetail = ({ loopColor, bodyColor, isMobile }) => {
         />
 
         {/* 2. 弦本体 (下に伸びる紐) */}
-        <line x1="50" y1="220" x2="50" y2={isMobile ? "350" : "600"} stroke={bodyColor} strokeWidth="8" strokeLinecap="round" />
-        <line x1="50" y1="220" x2="50" y2={isMobile ? "350" : "600"} stroke="url(#braidTexture)" strokeWidth="8" strokeLinecap="round" opacity="0.6" />
-        <line x1="50" y1="220" x2="50" y2={isMobile ? "350" : "600"} stroke="url(#highlightGradient)" strokeWidth="8" strokeLinecap="round" style={{ mixBlendMode: 'overlay' }} />
+        <line x1="50" y1="220" x2="50" y2={isMobile ? "330" : "600"} stroke={bodyColor} strokeWidth="8" strokeLinecap="round" />
+        <line x1="50" y1="220" x2="50" y2={isMobile ? "330" : "600"} stroke="url(#braidTexture)" strokeWidth="8" strokeLinecap="round" opacity="0.6" />
+        <line x1="50" y1="220" x2="50" y2={isMobile ? "330" : "600"} stroke="url(#highlightGradient)" strokeWidth="8" strokeLinecap="round" style={{ mixBlendMode: 'overlay' }} />
 
         {/* 3. 結束部分 (仕掛け/Neck) - ループからのつながりをより自然に */}
         <g>
@@ -395,7 +395,7 @@ export default function KyudoStringCustomizer() {
             {/* HTML Labels for Layout Flexibility */}
             {isMobile ? (
               <>
-                <div className="absolute top-[10px] left-1/2 transform -translate-x-1/2 w-full flex items-center justify-center gap-2 z-10">
+                <div className="absolute top-[0px] left-1/2 transform -translate-x-1/2 w-full flex items-center justify-center gap-2 z-10">
                   <span className="text-xs font-bold text-stone-500 tracking-widest">日の輪（上部）</span>
                   <button onClick={() => setHinowaRot(!hinowaRot)} className="p-1 bg-stone-100 rounded-full hover:bg-stone-200 transition-colors">
                     <RotateCcw size={12} className="text-stone-600" />
@@ -438,10 +438,10 @@ export default function KyudoStringCustomizer() {
                 <circle cx="200" cy="250" r="180" fill="white" opacity="0.5" />
               )}
 
-              <g transform={`${isMobile ? "translate(0, 60) rotate(-90)" : "translate(25, 20) scale(1.5)"} ${hinowaRot ? (isMobile ? 'rotate(180, 50, 175)' : 'rotate(180, 50, 300)') : ''}`}>
+              <g transform={`${isMobile ? "translate(10, 100) rotate(-90)" : "translate(25, 20) scale(1.5)"} ${hinowaRot ? (isMobile ? 'rotate(180, 50, 170)' : 'rotate(180, 50, 300)') : ''}`}>
                 <StringLoopDetail loopColor={hinowaColor.hex} bodyColor={bodyColor.hex} isMobile={isMobile} />
               </g>
-              <g transform={`${isMobile ? "translate(0, 190) rotate(-90)" : "translate(225, 20) scale(1.5)"} ${tsukinowaRot ? (isMobile ? 'rotate(180, 50, 175)' : 'rotate(180, 50, 300)') : ''}`}>
+              <g transform={`${isMobile ? "translate(10, 230) rotate(-90)" : "translate(225, 20) scale(1.5)"} ${tsukinowaRot ? (isMobile ? 'rotate(180, 50, 170)' : 'rotate(180, 50, 300)') : ''}`}>
                 <StringLoopDetail loopColor={tsukinowaColor.hex} bodyColor={bodyColor.hex} isMobile={isMobile} />
               </g>
             </svg>
