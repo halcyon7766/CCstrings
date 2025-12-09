@@ -561,9 +561,9 @@ export default function Home() {
                     </div>
 
                     {/* Footer Action */}
-                    <div className="mt-4 pt-4 pb-4 border-t border-stone-100 bg-white/95 backdrop-blur-sm sticky bottom-0 z-20 px-5 -mx-5">
+                    <div className="mt-4 pt-4 pb-0 border-t border-stone-100 bg-white/95 backdrop-blur-sm sticky bottom-0 z-20 px-5 -mx-5">
                         <button
-                            className={`w-full font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-3 transition-all transform active:scale-[0.99] shadow-md
+                            className={`w-full font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-3 transition-all transform active:scale-[0.99] shadow-md mb-2
                 ${copied ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-stone-900 hover:bg-stone-800 text-white'}
               `}
                             onClick={handleCopyConfig}
