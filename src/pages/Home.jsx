@@ -561,14 +561,14 @@ export default function Home() {
                     </div>
 
                     {/* Footer Action */}
-                    <div className="mt-6 pt-6 pb-8 border-t border-stone-200 bg-stone-100/90 backdrop-blur-sm sticky bottom-0 z-20">
+                    <div className="mt-4 pt-4 pb-4 border-t border-stone-100 bg-white/95 backdrop-blur-sm sticky bottom-0 z-20 px-5 -mx-5">
                         <button
-                            className={`w-full font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-3 transition-all transform active:scale-[0.99] shadow-lg
+                            className={`w-full font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-3 transition-all transform active:scale-[0.99] shadow-md
                 ${copied ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-stone-900 hover:bg-stone-800 text-white'}
               `}
                             onClick={handleCopyConfig}
                         >
-                            {copied ? <Check size={22} /> : <Copy size={22} />}
+                            {copied ? <Check size={20} /> : <Copy size={20} />}
                             {copied ? 'コピーしました！' : '構成をコピー'}
                         </button>
                     </div>
