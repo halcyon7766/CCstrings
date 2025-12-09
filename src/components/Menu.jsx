@@ -46,8 +46,8 @@ const Menu = () => {
                                 to={item.path}
                                 onClick={closeMenu}
                                 className={`flex items-center justify-between p-3 rounded-xl transition-colors ${location.pathname === item.path
-                                        ? 'bg-stone-100 text-stone-900 font-bold'
-                                        : 'text-stone-600 hover:bg-stone-50 hover:text-stone-900'
+                                    ? 'bg-stone-100 text-stone-900 font-bold'
+                                    : 'text-stone-600 hover:bg-stone-50 hover:text-stone-900'
                                     }`}
                             >
                                 <span>{item.label}</span>
@@ -57,8 +57,11 @@ const Menu = () => {
                     </nav>
 
                     <div className="pt-6 border-t border-stone-100">
-                        <p className="text-xs text-stone-400 text-center">
+                        <p className="text-xs text-stone-400 text-center mb-2">
                             つるしみゅ<br />Loop String Simulator
+                        </p>
+                        <p className="text-xs text-stone-500 text-center">
+                            Produced by <a href="https://x.com/7n038" target="_blank" rel="noopener noreferrer" className="text-stone-600 hover:text-stone-900 font-bold transition-colors">@7n038</a>
                         </p>
                     </div>
                 </div>
