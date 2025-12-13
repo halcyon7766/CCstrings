@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { ChevronDown, Info, Copy, Check, RotateCcw } from 'lucide-react';
 import {
     MATERIALS,
@@ -552,13 +553,17 @@ export default function Home() {
                         {/* Contact / Footer */}
                         <div className="text-center pt-4 pb-2 text-stone-500 text-sm">
                             <p className="mb-2">Produced by <a href="https://x.com/7n038" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-bold">@7n038</a></p>
-                            <p className="text-xs leading-relaxed">
+                            <p className="text-xs leading-relaxed mb-2">
                                 このサイトに関するご相談・お問い合わせは<br />
                                 上記X(旧Twitter)までお気軽にご連絡ください。
+                            </p>
+                            <p className="text-xs">
+                                <Link to="/about" className="text-stone-400 hover:text-stone-600 underline">プライバシーポリシー</Link>
                             </p>
                         </div>
 
                     </div>
+
 
                     {/* Footer Action */}
                     <div className="mt-4 pt-4 pb-0 border-t border-stone-100 bg-white/95 backdrop-blur-sm sticky bottom-0 z-20 px-5 -mx-5">
@@ -573,6 +578,79 @@ export default function Home() {
                         </button>
                     </div>
                 </div>
+            </div>
+
+            {/* Content Section for AdSense Compliance & User Guide */}
+            <div className="max-w-4xl mx-auto px-4 py-12 md:py-16 border-t border-stone-200">
+                <article className="prose prose-stone max-w-none">
+                    <h2 className="text-2xl md:text-3xl font-bold text-stone-800 mb-6">
+                        弓道弦のカラーオーダーをより身近に
+                    </h2>
+                    <p className="text-stone-700 leading-relaxed mb-6">
+                        弓道の道具の中でも、弦（つる）は射手の個性を表現できる数少ないアイテムの一つです。
+                        近年、多くの弓具店で弦のカラーオーダーが可能になり、日の輪・月の輪・弦本体の色を自由に選べるようになりました。
+                        しかし、色見本だけを見て実際の仕上がりをイメージするのは簡単ではありません。
+                        「つるしみゅ」は、そんな悩みを解決するために生まれたシミュレーターです。
+                    </p>
+
+                    <h3 className="text-xl font-bold text-stone-800 mt-8 mb-4">
+                        自分だけの弦を作る楽しみ
+                    </h3>
+                    <p className="text-stone-700 leading-relaxed mb-6">
+                        弦の色選びには、機能的な理由と美的な理由の2つがあります。
+                        機能面では、視認性の高い色を選ぶことで会での矢の平行を確認しやすくなったり、汚れが目立ちにくい色を選んだりすることができます。
+                        美的面では、着物や袴、矢の筈や羽の色とコーディネートを楽しむことができます。
+                        本ツールでは、代表的な素材（響、光牙、快天など）ごとの色の制限も再現しつつ、リアルなプレビューで検討できます。
+                    </p>
+
+                    <h3 className="text-xl font-bold text-stone-800 mt-8 mb-4">
+                        オーダー方法のポイント
+                    </h3>
+                    <div className="bg-stone-50 p-6 rounded-xl border border-stone-200 mb-8">
+                        <ul className="space-y-4">
+                            <li className="flex items-start gap-3">
+                                <span className="flex-shrink-0 w-6 h-6 bg-stone-800 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                                <div>
+                                    <strong className="block text-stone-900 mb-1">素材を選ぶ</strong>
+                                    <p className="text-sm text-stone-600">
+                                        弦の素材は、矢飛びの鋭さや弦音、引き心地に大きく影響します。
+                                        詳しくは
+                                        <Link to="/materials" className="text-blue-600 hover:underline mx-1 font-medium">
+                                            素材ガイド
+                                        </Link>
+                                        をご覧ください。
+                                    </p>
+                                </div>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <span className="flex-shrink-0 w-6 h-6 bg-stone-800 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                                <div>
+                                    <strong className="block text-stone-900 mb-1">色を組み合わせる</strong>
+                                    <p className="text-sm text-stone-600">
+                                        日の輪は伝統的に赤が一般的ですが、月の輪や弦本体は自由に選べる場合が多いです。
+                                        シミュレーター上で様々な組み合わせを試してみましょう。
+                                    </p>
+                                </div>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <span className="flex-shrink-0 w-6 h-6 bg-stone-800 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+                                <div>
+                                    <strong className="block text-stone-900 mb-1">構成を保存・注文</strong>
+                                    <p className="text-sm text-stone-600">
+                                        気に入った組み合わせが決まったら「構成をコピー」ボタンを使用します。
+                                        生成されたテキストを弓具店への問い合わせメールや注文フォームに貼り付けるだけで、
+                                        間違いのないスムーズな注文が可能です。
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <p className="text-sm text-stone-500 text-center">
+                        ※ 本シミュレーターは色の組み合わせをイメージするためのツールです。
+                        実際の発色は素材や製造ロットにより異なる場合があります。
+                    </p>
+                </article>
             </div>
         </div>
     );

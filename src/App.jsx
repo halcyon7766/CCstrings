@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Materials from './pages/Materials';
+import NotFound from './pages/NotFound';
 import Menu from './components/Menu';
 import Logo from './components/Logo';
 
@@ -31,6 +32,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/materials" element={<Materials />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
       </div>
